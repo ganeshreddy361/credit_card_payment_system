@@ -1,0 +1,22 @@
+services:
+
+  django:
+    build: ./django_backend
+    container_name: creditcard_django
+    ports:
+      - "8000:8000"
+
+  fastapi:
+    build: ./fastapi_backend
+    container_name: creditcard_fastapi
+    ports:
+      - "8001:8001"
+
+  frontend:
+    build: ./frontend
+    container_name: creditcard_frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - django
+      - fastapi
